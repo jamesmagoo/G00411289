@@ -1,14 +1,76 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Quotes
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openStudentsPage()">
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+  
 </ion-header>
 
 <ion-content padding>
   The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
-  </p>
+  <ion-card>
+    <ion-card-header>
+      <h4>{{ quote }}</h4>
+    </ion-card-header>
+    <ion-card-content>
+      {{ author }}
+    </ion-card-content>
+    <button (click)="shareQuote()">Share</button>
+  </ion-card>
+  
+  <button ion-button (click)="openStudentsPage()">
+    List Students
+  </button>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Players</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">First Name</ion-col>
+          <ion-col size="4">Surname</ion-col>
+          <ion-col size="2">Age</ion-col>
+          <ion-col size="2">Height</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">Lionel</ion-col>
+          <ion-col size="4">Messi</ion-col>
+          <ion-col size="2">33</ion-col>
+          <ion-col size="2">170cm</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">Cristiano</ion-col>
+          <ion-col size="4">Ronaldo</ion-col>
+          <ion-col size="2">36</ion-col>
+          <ion-col size="2">185cm</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">Neymar</ion-col>
+          <ion-col size="4">da Silva Santos Jr.</ion-col>
+          <ion-col size="2">28</ion-col>
+          <ion-col size="2">175cm</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>
+

@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>First Name</ion-label>
+      <ion-input type="text" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Last Name</ion-label>
+      <ion-input type="text" ></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button block (click)="getQuote()">Get Quote</button>
+</ion-content>
+
+<!-- an input for a soccer player Name -->
+<ion-item>
+  <ion-label floating>Soccer Player Name</ion-label>
+  <ion-input type="text" [(ngModel)]="playerName"></ion-input>
+</ion-item>
+
+
+
+
+<ion-item>
+  <ion-label>Country ID</ion-label>
+  <ion-input type="text" placeholder="Enter country ID"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label>Player Max Age</ion-label>
+  <ion-input type="number" placeholder="Enter maximum player age"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label>Player Minimum Age</ion-label>
+  <ion-input type="number" placeholder="Enter minimum player age"></ion-input>
+</ion-item>
+<button>Save</button>
+<button>Cancel</button>
+
+

@@ -1,3 +1,76 @@
-page-home {
+$primary-color: #4CAF50;
+$secondary-color: #2196F3;
 
+page-home {
+    ion-list {
+        ion-item {
+        ion-label {
+            color: $primary-color;
+        }
+        }
+    }
+
+    ion-navbar {
+        --background: #eee;
+        --border-color: #ddd;
+        --title-color: #333;
+        --title-font-size: 24px;
+        --title-font-weight: bold;
+        --title-font-family: 'Courier New', Courier, monospace;
+        --button-color: #333;
+        --button-font-size: 18px;
+        --button-font-weight: bold;
+        --button-font-family: 'Courier New', Courier, monospace;
+        width: 100%;
+        margin: 0 auto;
+        padding: 12px;
+        ion-title {
+          text-align: center;
+        }
+        ion-buttons {
+          button {
+            margin-left: 8px;
+          }
+        }
+      }
+      
+    
+    button {
+        color: $secondary-color;
+        &:hover {
+        color: $primary-color;
+        }
+    }
+
+    ion-card {
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        ion-card-header {
+          h4 {
+            color: #333;
+            white-space: pre-wrap;
+          overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+          }
+        }
+        ion-card-content {
+          color: #555;
+          
+        }
+        button {
+            margin-top: 24px;
+            --background: #eee;
+            --background-activated: #ddd;
+            --color: #333;
+            --border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+          }
+          
+      }
+      
 }

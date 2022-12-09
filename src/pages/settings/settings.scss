@@ -1,0 +1,19 @@
+$primary-color: #4CAF50;
+$secondary-color: #2196F3;
+
+page-settings{
+    ion-list {
+        ion-item {
+        ion-label {
+            color: $primary-color;
+        }
+        }
+    }
+    
+    button {
+        color: $secondary-color;
+        &:hover {
+        color: $primary-color;
+        }
+    }
+}
