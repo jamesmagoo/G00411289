@@ -10,6 +10,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 export class HomePage {
   quote: string;
   author: string;
+  tags: string [];
 
   ngOnInit() {
     this.fetchQuote();
@@ -23,8 +24,10 @@ export class HomePage {
     try {
       const response = await fetch('https://api.quotable.io/random');
       const data = await response.json();
+      console.log(data)
       this.quote = data.content;
       this.author = data.author;
+      this.tags = data.tags;
     } catch (error) {
       console.error(error);
     }

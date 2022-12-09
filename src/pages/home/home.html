@@ -21,6 +21,9 @@
     <ion-card-content>
       {{ author }}
     </ion-card-content>
+    <ion-chip *ngFor="let tag of tags" class="ion-text-small">
+      {{ tag }}
+    </ion-chip>
     <button (click)="shareQuote()">Share</button>
   </ion-card>
   
@@ -73,4 +76,6 @@
     </ion-item>
   </ion-list>
 </ion-content>
+
+
 

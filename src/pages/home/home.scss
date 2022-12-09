@@ -32,6 +32,14 @@ page-home {
             margin-left: 8px;
           }
         }
+        ion-item {
+            --color: #999;
+            --font-size: 14px;
+            --font-weight: 300;
+            --font-family: 'Courier New', Courier, monospace;
+            margin: 4px 0;
+          }
+          
       }
       
     
@@ -59,7 +67,12 @@ page-home {
         }
         ion-card-content {
           color: #555;
-          
+          ion-chip {
+            --padding-start: 10px;
+            --padding-end: 10px;
+            --padding-top: 4px;
+            --padding-bottom: 4px;
+          }
         }
         button {
             margin-top: 24px;
