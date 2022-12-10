@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'page-home',
@@ -11,29 +12,30 @@ export class HomePage {
   quote: string;
   author: string;
   tags: string [];
+  hidePlayersList: boolean = true;
 
   ngOnInit() {
     this.fetchQuote();
   }
 
-  constructor(public navCtrl: NavController, private socialSharing: SocialSharing) {
+  constructor(public navCtrl: NavController, private socialSharing: SocialSharing, private http: HttpClient) {
 
   }
 
-  async fetchQuote() {
-    try {
-      const response = await fetch('https://api.quotable.io/random');
-      const data = await response.json();
-      console.log(data)
-      this.quote = data.content;
-      this.author = data.author;
-      this.tags = data.tags;
-    } catch (error) {
-      console.error(error);
+  fetchQuote() {
+      this.http.get('https://api.quotable.io/random')
+      .subscribe(data => {
+        this.quote = data['content'];
+        this.author = data['author'];
+        this.tags = data['tags'];
+    });
+  }
+
+  refreshQuote() {
+    this.fetchQuote();
     }
-  }
 
-  openStudentsPage() {
+  openSettingsPage() {
     this.navCtrl.push(SettingsPage);
     }
 

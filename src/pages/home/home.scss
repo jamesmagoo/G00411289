@@ -10,6 +10,15 @@ page-home {
         }
     }
 
+    ion-col {
+        text-align: center;
+        ion-label {
+            font-size: 24px;
+            font-weight: bold;
+            color: $primary-color;
+        }
+    }
+
     ion-navbar {
         --background: #eee;
         --border-color: #ddd;
@@ -25,12 +34,7 @@ page-home {
         margin: 0 auto;
         padding: 12px;
         ion-title {
-          text-align: center;
-        }
-        ion-buttons {
-          button {
-            margin-left: 8px;
-          }
+          text-align: left;
         }
         ion-item {
             --color: #999;
@@ -42,13 +46,13 @@ page-home {
           
       }
       
+
     
     button {
         color: $secondary-color;
         &:hover {
         color: $primary-color;
-        }
-    }
+        }    }
 
     ion-card {
         width: 90%;
@@ -74,15 +78,6 @@ page-home {
             --padding-bottom: 4px;
           }
         }
-        button {
-            margin-top: 24px;
-            --background: #eee;
-            --background-activated: #ddd;
-            --color: #333;
-            --border-radius: 4px;
-            font-size: 14px;
-            font-weight: bold;
-          }
           
       }
       

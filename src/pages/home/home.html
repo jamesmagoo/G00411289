@@ -1,10 +1,13 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Quotes
+    <ion-buttons left>
+      <img  width="150px" src="../../assets/imgs/atu3.png"/>
+    </ion-buttons>
+    <ion-title align-title="center">
+      G00411289
     </ion-title>
     <ion-buttons end>
-      <button ion-button (click)="openStudentsPage()">
+      <button ion-button (click)="openSettingsPage()">
         <ion-icon name="settings"></ion-icon>
       </button>
     </ion-buttons>
@@ -13,6 +16,7 @@
 </ion-header>
 
 <ion-content padding>
+  
   <ion-card>
     <ion-card-header>
       <h4>{{ quote }}</h4>
@@ -20,14 +24,27 @@
     <ion-card-content>
       {{ author }}
     </ion-card-content>
+    <button ion-button icon-only (click)="refreshQuote()">
+      <ion-icon name="refresh" ></ion-icon>
+    </button>
     <ion-chip *ngFor="let tag of tags" class="ion-text-small">
-      {{ tag }}
+      <ion-icon name="quote"></ion-icon>
+      <ion-label>{{ tag }}</ion-label>
     </ion-chip>
-    <button (click)="shareQuote()">Share</button>
+    <button ion-button icon-only (click)="shareQuote()">
+      <ion-icon name="share" ></ion-icon>
+    </button>
   </ion-card>
-  
 
-  <ion-list>
+  <ion-grid>
+    <ion-row justify-right>
+      <ion-col align-self-center>
+        <button ion-button round outline (click)="openSettingsPage()">Set Player Data</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list [hidden]="hidePlayersList">
     <ion-list-header>
       <ion-label>Players</ion-label>
     </ion-list-header>
