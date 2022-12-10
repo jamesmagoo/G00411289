@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
 import { IonicStorageModule } from '@ionic/storage';
+import { PlayersProvider } from '../providers/players/players';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SocialSharing,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PlayersProvider
   ]
 })
 export class AppModule {}

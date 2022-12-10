@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { HttpClient } from '@angular/common/http';
+import { PlayersProvider } from '../../providers/players/players';
 
 @Component({
   selector: 'page-home',
@@ -16,9 +17,13 @@ export class HomePage {
 
   ngOnInit() {
     this.fetchQuote();
+    // this.playersProvider.getPlayerData().subscribe((data) => {
+    //   console.log(data)
+    // });
   }
+  
 
-  constructor(public navCtrl: NavController, private socialSharing: SocialSharing, private http: HttpClient) {
+  constructor(public navCtrl: NavController, private socialSharing: SocialSharing, private http: HttpClient, private playersProvider: PlayersProvider) {
 
   }
 
@@ -39,12 +44,17 @@ export class HomePage {
     this.navCtrl.push(SettingsPage);
     }
 
-    shareQuote() {
-      this.socialSharing.share(
-        `"${this.quote}" - ${this.author}`,
-        'My favorite quote'
-      );
-      
-    }
-    
+
+  shareQuote() {
+    this.socialSharing.share(
+      `"${this.quote}" - ${this.author}`,
+      'My favorite quote'
+    );
+  }
+
+  test(){
+    this.playersProvider.test();
+  }
+
 }
+  
