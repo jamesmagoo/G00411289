@@ -16,4 +16,33 @@ page-settings{
         color: $primary-color;
         }
     }
+
+    ion-content {
+        padding: 20px;
+      
+        ion-list {
+          ion-item {
+            ion-label {
+              font-size: 16px;
+              font-weight: bold;
+            }
+      
+            ion-input {
+                font-size: 16px;
+                border: 1px solid #ccc;
+                padding: 10px;
+                margin: 2px;
+                background-color: #f8f8f8;
+              }
+          }
+        }
+      
+        button {
+          margin-top: 20px;
+          font-size: 16px;
+        }
+        
+      }
+      
+
 }
