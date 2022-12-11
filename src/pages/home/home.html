@@ -44,6 +44,10 @@
     </ion-row>
   </ion-grid>
 
+  <h1 [hidden]="hidePlayersList">{{countryID}} {{countryName}}</h1>
+  <img [src]="flagImage" alt="flag">
+
+
   <ion-list [hidden]="hidePlayersList">
     <ion-list-header>
       <ion-label>Players</ion-label>
@@ -53,38 +57,18 @@
         <ion-row>
           <ion-col size="4">First Name</ion-col>
           <ion-col size="4">Surname</ion-col>
-          <ion-col size="2">Age</ion-col>
-          <ion-col size="2">Height</ion-col>
+          <ion-col size="1">Age</ion-col>
+          <ion-col size="1">Height</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
-    <ion-item>
+    <ion-item *ngFor="let player of players">
       <ion-grid>
         <ion-row>
-          <ion-col size="4">Lionel</ion-col>
-          <ion-col size="4">Messi</ion-col>
-          <ion-col size="2">33</ion-col>
-          <ion-col size="2">170cm</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="4">Cristiano</ion-col>
-          <ion-col size="4">Ronaldo</ion-col>
-          <ion-col size="2">36</ion-col>
-          <ion-col size="2">185cm</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="4">Neymar</ion-col>
-          <ion-col size="4">da Silva Santos Jr.</ion-col>
-          <ion-col size="2">28</ion-col>
-          <ion-col size="2">175cm</ion-col>
+          <ion-col size="4">{{player.firstname}}</ion-col>
+          <ion-col size="4">{{player.lastname}}</ion-col>
+          <ion-col size="1">{{player.age}}</ion-col>
+          <ion-col size="1">{{player.height}}</ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>

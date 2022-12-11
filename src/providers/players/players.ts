@@ -14,31 +14,18 @@ export class PlayersProvider {
   
   minAge: number = 0;
   maxAge: number = 100;
-  countryId: number = 4;
+  countryId: number;
+  countryCode: string;
   // TODO get api key from environment
-  apiKey: string = 'YOUR_API_KEY';
-  countryURL = `https://app.sportdataapi.com/api/v1/soccer/countries?apikey=${this.apiKey}&continent=Europe`;
+  apiKey: string = '628d5660-7899-11ed-9ef8-e396ff47ff67';
+  countryURL = `https://app.sportdataapi.com/api/v1/soccer/countries/${this.countryId}?apikey=${this.apiKey}`;
   //apiUrl = `https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${this.countryId}&max_age=${this.maxAge}&min_age=${this.minAge}}`
-  apiUrl = `https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${this.countryId}}`
+  apiUrl = `https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${this.countryId}`
 
 
 
   constructor(public http: HttpClient, public storage: Storage) {
     console.log('Hello PlayersProvider Provider');
-    // Check if there is a countryId in storage
-    storage.get('countryId').then((val) => {
-      if(val == null) {
-        // if no, ask for it
-        alert("Set your countryId in settings to get players");
-      } else{
-        // if yes and it is valid, use it to get a flag and players
-        this.checkCountryId(val);
-        console.log('Your countryId is', val);
-        this.countryId = val;
-        this.getPlayerData();
-      }
-    });
-
     // set min and max if they are set in storage
     storage.get('minAge').then((val) => {
       if(val != null) {
@@ -57,20 +44,19 @@ export class PlayersProvider {
   }
 
   
-  
-  getPlayerData(): Observable<any>{
-    console.log(this.http.get(this.apiUrl))
-    return this.http.get(this.apiUrl);
+  getPlayerData(id: number): Observable<any>{
+    return this.http.get(`https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${id}`);
     
   }
 
-  checkCountryId(countryId: number):Observable<any> {
-    console.log(this.http.get(this.countryURL));
-    return this.http.get(this.countryURL);
+  getCountry(id: number): Observable<any>{
+    return this.http.get(`https://app.sportdataapi.com/api/v1/soccer/countries/${id}?apikey=${this.apiKey}`);
   }
 
-  public test() {
-    console.log(this.minAge, this.maxAge, this.countryId);
+  getFlag(countryCode: string): Observable<any>{
+    console.log(`Querying flag for country code: https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png` );
+    return this.http.get(`https://flagsapi.com/${countryCode.toUpperCase()}/flat/64.png`);
   }
+
 
 }
