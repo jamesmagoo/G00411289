@@ -55,7 +55,9 @@ export class PlayersProvider {
 
   getFlag(countryCode: string): Observable<any>{
     console.log(`Querying flag for country code: https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png` );
-    return this.http.get(`https://flagsapi.com/${countryCode.toUpperCase()}/flat/64.png`);
+    const upperCaseCode = countryCode.toUpperCase();
+    //return this.http.get(`https://flagsapi.com/${upperCaseCode}/shiny/64.png`,{ responseType: 'blob' });
+    return this.http.get(`https://countryflagsapi.com/png/${countryCode}` ,{ responseType: 'blob' });
   }
 
 

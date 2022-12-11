@@ -15,7 +15,7 @@ export class HomePage {
   author: string;
   countryID: number = null;
   countryCode: string;
-  flagImage: string = 'https://flagsapi.com/BO/shiny/64.png';
+  flagImage: any;
   countryName: string;
   players: Object[];
   tags: string [];
@@ -33,7 +33,6 @@ export class HomePage {
   fetchQuote() {
       this.http.get('https://api.quotable.io/random')
       .subscribe(data => {
-        console.log(data)
         this.quote = data['content'];
         this.author = data['author'];
         this.tags = data['tags'];
@@ -76,7 +75,7 @@ export class HomePage {
       console.log(data.data["country_code"]);
       this.countryCode = data.data["country_code"];
       this.countryName = data.data.name ;
-      this.getFlag(data.data["country_code"].toUpperCase());
+      this.getFlag(data.data["country_code"]);
     }, err => {
       console.log(err);
     }
@@ -95,7 +94,14 @@ export class HomePage {
 
   getFlag(countryCode: string){
     this.playersProvider.getFlag(countryCode).subscribe(data => {
-      console.log(data);
+      const blob = new Blob([data], { type: 'image/png' });
+      // Get the base64 encoded image
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        this.flagImage = base64data;
+      }
     }, err => {
       console.log(err);
     }
