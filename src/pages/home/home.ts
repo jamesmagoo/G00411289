@@ -19,15 +19,32 @@ export class HomePage {
   countryName: string;
   players: Object[];
   tags: string [];
+  minAge: number;
+  maxAge: number;
   hidePlayersList: boolean = true;
 
   ngOnInit() {
     this.fetchQuote();
-    this.checkCountryId();
   }
   
   constructor(public navCtrl: NavController, private socialSharing: SocialSharing, private http: HttpClient, private playersProvider: PlayersProvider, private storage: Storage) {
+      storage.get("minAge").then((val) => {
+        this.minAge = val;
+      });
 
+      storage.get("maxAge").then((val) => {
+        this.maxAge = val;
+      });
+
+    storage.get("countryId").then((val) => {
+      if (val != null) {
+        this.countryID = val;
+        this.hidePlayersList = false;
+        // get and set the country data
+        this.setCountryData(this.countryID);
+        // get and set the player data
+        this.setPlayerData(this.countryID);
+      }});
   }
 
   fetchQuote() {
@@ -83,6 +100,48 @@ export class HomePage {
   }
 
   setPlayerData(id : number) {
+    // check if there is a minAge and maxAge
+    this.storage.get("minAge").then((val) => {
+      if (val != null) {
+        this.minAge = val;
+      }
+    });
+
+    this.storage.get("maxAge").then((val) => {
+      if (val != null) {
+        this.maxAge = val;
+      }
+    });
+
+    if(this.minAge != null && this.maxAge != null) {
+      console.log("Both min & max age set")
+      this.playersProvider.getPlayerDataMinMaxAge(this.minAge, this.maxAge, id).subscribe(data => {
+        console.log(data.data)
+        this.players = data.data;
+      }, err => {
+        console.log(err);
+      }
+      );
+    } else if (this.minAge != null) {
+      console.log("min age set")
+      this.playersProvider.getPlayerDataMinAge(this.minAge, id).subscribe(data => {
+        console.log(data.data)
+        this.players = data.data;
+      }, err => {
+        console.log(err);
+      }
+      );
+    } else if (this.maxAge != null) {
+      console.log("max age set")
+      this.playersProvider.getPlayerDataMaxAge(this.maxAge, id).subscribe(data => {
+        console.log(data.data)
+        this.players = data.data;
+      }, err => {
+        console.log(err);
+      }
+      );
+    } else {
+      console.log("No age set")
     this.playersProvider.getPlayerData(id).subscribe(data => {
       console.log(data.data)
       this.players = data.data;
@@ -91,6 +150,7 @@ export class HomePage {
     }
     );
   }
+}
 
   getFlag(countryCode: string){
     this.playersProvider.getFlag(countryCode).subscribe(data => {
@@ -107,6 +167,5 @@ export class HomePage {
     }
     );
   }
-
 }
   

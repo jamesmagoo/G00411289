@@ -11,18 +11,12 @@ import { Storage } from "@ionic/storage";
 */
 @Injectable()
 export class PlayersProvider {
-  
   minAge: number = 0;
   maxAge: number = 100;
   countryId: number;
   countryCode: string;
   // TODO get api key from environment
   apiKey: string = '628d5660-7899-11ed-9ef8-e396ff47ff67';
-  countryURL = `https://app.sportdataapi.com/api/v1/soccer/countries/${this.countryId}?apikey=${this.apiKey}`;
-  //apiUrl = `https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${this.countryId}&max_age=${this.maxAge}&min_age=${this.minAge}}`
-  apiUrl = `https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${this.countryId}`
-
-
 
   constructor(public http: HttpClient, public storage: Storage) {
     console.log('Hello PlayersProvider Provider');
@@ -58,6 +52,18 @@ export class PlayersProvider {
     const upperCaseCode = countryCode.toUpperCase();
     //return this.http.get(`https://flagsapi.com/${upperCaseCode}/shiny/64.png`,{ responseType: 'blob' });
     return this.http.get(`https://countryflagsapi.com/png/${countryCode}` ,{ responseType: 'blob' });
+  }
+
+  getPlayerDataMaxAge(maxAge: number, id:number): Observable<any>{ 
+    return this.http.get(`https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${id}&max_age=${maxAge}`);
+  }
+
+  getPlayerDataMinAge(minAge: number, id:number): Observable<any>{ 
+    return this.http.get(`https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${id}&min_age=${minAge}`);
+  }
+  
+  getPlayerDataMinMaxAge(minAge: number , maxAge: number, id:number) : Observable<any> {
+    return this.http.get(`https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${id}&min_age=${minAge}&max_age=${maxAge}`);
   }
 
 
