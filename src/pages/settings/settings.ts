@@ -20,6 +20,8 @@ export class SettingsPage {
     for (let i = 14; i <= 55; i++) {
       this.ages.push(i);
     }
+    this.populateInputs(); 
+      
   }
 
   save() {
@@ -52,6 +54,27 @@ export class SettingsPage {
     }, err => {
       alert("Invalid country ID");
     });
-}
   }
+
+  populateInputs() {
+    this.storage.get("countryId")
+    .then((val) => {
+      if (val != null) {
+        this.countryIdInput = val;
+      }
+    });
+    this.storage.get("minAge")
+    .then((val) => {
+      if (val != null) {
+        this.minAgeInput = val;
+      }
+    });
+    this.storage.get("maxAge")
+    .then((val) => {
+      if (val != null) {
+        this.maxAgeInput = val;
+      }
+    });
+  }
+}
   
