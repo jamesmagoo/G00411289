@@ -48,9 +48,6 @@ export class PlayersProvider {
   }
 
   getFlag(countryCode: string): Observable<any>{
-    console.log(`Querying flag for country code: https://flagsapi.com/${countryCode.toUpperCase()}/shiny/64.png` );
-    const upperCaseCode = countryCode.toUpperCase();
-    //return this.http.get(`https://flagsapi.com/${upperCaseCode}/shiny/64.png`,{ responseType: 'blob' });
     return this.http.get(`https://countryflagsapi.com/png/${countryCode}` ,{ responseType: 'blob' });
   }
 
@@ -61,7 +58,7 @@ export class PlayersProvider {
   getPlayerDataMinAge(minAge: number, id:number): Observable<any>{ 
     return this.http.get(`https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${id}&min_age=${minAge}`);
   }
-  
+
   getPlayerDataMinMaxAge(minAge: number , maxAge: number, id:number) : Observable<any> {
     return this.http.get(`https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${id}&min_age=${minAge}&max_age=${maxAge}`);
   }

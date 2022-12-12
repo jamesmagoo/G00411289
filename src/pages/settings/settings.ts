@@ -17,6 +17,7 @@ export class SettingsPage {
   ages: number[] = [];
 
   constructor(public navCtrl: NavController, public storage: Storage, public playersProvider: PlayersProvider) {
+    // Set Ages 
     for (let i = 14; i <= 55; i++) {
       this.ages.push(i);
     }
@@ -40,6 +41,10 @@ export class SettingsPage {
   }
 
   saveCountryId(countryId: number) {
+    if(countryId == null) {
+      alert("Invalid country ID");
+      return
+    } 
     this.playersProvider.getCountry(countryId)
     .subscribe(data => {
       alert("Valid country ID");
