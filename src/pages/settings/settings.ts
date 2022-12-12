@@ -23,17 +23,11 @@ export class SettingsPage {
   }
 
   save() {
-    this.saveCountryId(this.countryIdInput);
-    console.log(this.countryIdInput);
-    
-    if (this.countryIdInput != null && this.isValidCountryId == true) {
-        const minAge = this.minAgeInput;
-        const maxAge = this.maxAgeInput;
-        this.storage.set("minAge", minAge);
-        this.storage.set("maxAge", maxAge);
-        this.navCtrl.push(HomePage);
-      
-    } 
+    if (this.countryIdInput != null) {
+      this.saveCountryId(this.countryIdInput);
+    } else {
+      alert("You must input a country ID");
+    }
   }
 
   cancel() {
@@ -48,13 +42,15 @@ export class SettingsPage {
     .subscribe(data => {
       alert("Valid country ID");
       console.log(data);
-      console.log(this.isValidCountryId + "setting to true");
       this.storage.set("countryId", countryId);
       this.isValidCountryId = true;
+      const minAge = this.minAgeInput;
+      const maxAge = this.maxAgeInput;
+      this.storage.set("minAge", minAge);
+      this.storage.set("maxAge", maxAge);
+      this.navCtrl.push(HomePage);
     }, err => {
       alert("Invalid country ID");
-      console.log(this.isValidCountryId + "setting to false");
-      this.isValidCountryId = false;
     });
 }
   }
