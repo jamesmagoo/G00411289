@@ -17,10 +17,6 @@ export class SettingsPage {
   ages: number[] = [];
 
   constructor(public navCtrl: NavController, public storage: Storage, public playersProvider: PlayersProvider) {
-    // Set Ages 
-    for (let i = 14; i <= 55; i++) {
-      this.ages.push(i);
-    }
     this.populateInputs(); 
       
   }
@@ -50,6 +46,10 @@ export class SettingsPage {
       alert("Valid country ID");
       console.log(data);
       this.storage.set("countryId", countryId);
+      if(this.minAgeInput >= this.maxAgeInput) {
+        alert("Invalid age range");
+        return
+      }
       this.isValidCountryId = true;
       const minAge = this.minAgeInput;
       const maxAge = this.maxAgeInput;

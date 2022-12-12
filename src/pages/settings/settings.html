@@ -15,19 +15,15 @@
       <ion-list>
         <ion-item>
           <ion-label floating>CountryID</ion-label>
-          <ion-input type="text" [(ngModel)]="countryIdInput"></ion-input>
+          <ion-input type="number" [(ngModel)]="countryIdInput"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Players Age Minimum</ion-label>
-          <ion-select [(ngModel)]="minAgeInput">
-            <ion-option *ngFor="let age of ages" [value]="age" >{{ age }} </ion-option>
-          </ion-select >
+          <ion-input type="number" [(ngModel)]="minAgeInput"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Player Age Maximum</ion-label>
-          <ion-select [(ngModel)]="maxAgeInput">
-            <ion-option *ngFor="let age of ages" [value]="age" >{{ age }} </ion-option>
-          </ion-select>
+          <ion-input type="number" [(ngModel)]="maxAgeInput"></ion-input>
         </ion-item>
       </ion-list>
       <button ion-button block (click)="save()">Save</button>
