@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Storage } from "@ionic/storage";
+import { environment } from '../../environments/environment';
 
 /*
   Generated class for the PlayersProvider provider.
@@ -15,13 +16,9 @@ export class PlayersProvider {
   maxAge: number = 100;
   countryId: number;
   countryCode: string;
-  // TODO get api key from environment
-  apiKey: string = '628d5660-7899-11ed-9ef8-e396ff47ff67';
-  // inject environament variables from .env file
-  //apiKey: string = process.env.API_KEY;
+  apiKey: string = environment.apiKey;
 
   constructor(public http: HttpClient, public storage: Storage) {
-    console.log('Hello PlayersProvider Provider');
     // set min and max if they are set in storage
     storage.get('minAge').then((val) => {
       if(val != null) {
