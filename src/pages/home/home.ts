@@ -73,8 +73,9 @@ export class HomePage {
     ).catch(err => {
       // Cordova is only available on devices 
       // Use browser for anyone who doesn't have a device
-      if ('share' in navigator) {
-        navigator.share({
+      let testNav : any = navigator;
+      if (testNav.share) {
+        testNav.share({
           title: 'Quote of the Day',
           text: `"${this.quote}" - ${this.author}`,
           url: 'https://quotes.com/'
