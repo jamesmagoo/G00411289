@@ -15,7 +15,7 @@ export class HomePage {
   author: string;
   countryID: number = null;
   countryCode: string;
-  flagImage: any;
+  flagURL: string;
   countryName: string;
   players = []
   tags: string [];
@@ -115,7 +115,7 @@ export class HomePage {
     this.playersProvider.getCountry(id).subscribe(data => {
       this.countryCode = data.data["country_code"];
       this.countryName = data.data.name ;
-      this.getFlag(data.data["country_code"]);
+      this.setFlag(data.data["country_code"]);
     }, err => {
       console.log(err);
     }
@@ -175,20 +175,9 @@ export class HomePage {
   }
 }
 
-  getFlag(countryCode: string){
-    this.playersProvider.getFlag(countryCode).subscribe(data => {
-      const blob = new Blob([data], { type: 'image/png' });
-      // Get the base64 encoded image
-      const reader = new FileReader();
-      reader.readAsDataURL(blob);
-      reader.onloadend = () => {
-        const base64data = reader.result;
-        this.flagImage = base64data;
-      }
-    }, err => {
-      console.log(err);
+  setFlag(countryCode: string){
+    let upperCaseCode = countryCode.toUpperCase();
+    this.flagURL = `https://flagsapi.com/${upperCaseCode}/flat/64.png`;
     }
-    );
-  }
 }
   

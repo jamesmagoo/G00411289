@@ -35,7 +35,6 @@ export class PlayersProvider {
     }
     );
   }
-
   
   getPlayerData(id: number): Observable<any>{
     return this.http.get(`https://app.sportdataapi.com/api/v1/soccer/players?apikey=${this.apiKey}&country_id=${id}`);
@@ -44,10 +43,6 @@ export class PlayersProvider {
 
   getCountry(id: number): Observable<any>{
     return this.http.get(`https://app.sportdataapi.com/api/v1/soccer/countries/${id}?apikey=${this.apiKey}`);
-  }
-
-  getFlag(countryCode: string): Observable<any>{
-    return this.http.get(`https://countryflagsapi.com/png/${countryCode}` ,{ responseType: 'blob' });
   }
 
   getPlayerDataMaxAge(maxAge: number, id:number): Observable<any>{ 
