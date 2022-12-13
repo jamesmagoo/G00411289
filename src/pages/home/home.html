@@ -74,10 +74,27 @@
   </ion-grid>
 
   <ion-list [hidden]="hidePlayersList">
-    <ion-list-header>
-      <ion-label>Players</ion-label>
-    </ion-list-header>
-    <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-title>Players</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- If playersListEmpty display warning to user -->
+
+
+    <ion-item *ngIf="players.length == 0">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <button ion-button color="danger"> No Players Found Within This Range
+            </button>
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item *ngIf="players.length>0">
       <ion-grid>
         <ion-row>
           <ion-col size="4">First Name</ion-col>
@@ -86,7 +103,7 @@
           <ion-col size="1">Height</ion-col>
         </ion-row>
       </ion-grid>
-    </ion-item>
+    </ion-item>    
     <ion-item *ngFor="let player of players">
       <ion-grid>
         <ion-row>

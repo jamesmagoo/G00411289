@@ -17,6 +17,8 @@ export class PlayersProvider {
   countryCode: string;
   // TODO get api key from environment
   apiKey: string = '628d5660-7899-11ed-9ef8-e396ff47ff67';
+  // inject environament variables from .env file
+  //apiKey: string = process.env.API_KEY;
 
   constructor(public http: HttpClient, public storage: Storage) {
     console.log('Hello PlayersProvider Provider');

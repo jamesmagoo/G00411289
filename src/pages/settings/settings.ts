@@ -23,7 +23,7 @@ export class SettingsPage {
 
   save() {
     if (this.countryIdInput != null) {
-      this.saveCountryId(this.countryIdInput);
+      this.saveCountryId(this.countryIdInput, this.maxAgeInput, this.minAgeInput);
     } else {
       alert("You must input a country ID");
     }
@@ -36,7 +36,7 @@ export class SettingsPage {
     this.maxAgeInput = null;
   }
 
-  saveCountryId(countryId: number) {
+  saveCountryId(countryId: number, maxAgeInput: number, minAgeInput: number) {
     if(countryId == null) {
       alert("Invalid country ID");
       return
@@ -46,15 +46,15 @@ export class SettingsPage {
       alert("Valid country ID");
       console.log(data);
       this.storage.set("countryId", countryId);
-      if(this.minAgeInput >= this.maxAgeInput) {
+      console.log("Ages set", minAgeInput, maxAgeInput)
+      // Check Age Range for valid queries to endpoint
+      if((minAgeInput >= maxAgeInput) && (minAgeInput != null && maxAgeInput != null)){
         alert("Invalid age range");
         return
       }
       this.isValidCountryId = true;
-      const minAge = this.minAgeInput;
-      const maxAge = this.maxAgeInput;
-      this.storage.set("minAge", minAge);
-      this.storage.set("maxAge", maxAge);
+      this.storage.set("minAge", minAgeInput);
+      this.storage.set("maxAge", maxAgeInput);
       this.navCtrl.push(HomePage);
     }, err => {
       alert("Invalid country ID");

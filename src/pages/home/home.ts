@@ -17,11 +17,12 @@ export class HomePage {
   countryCode: string;
   flagImage: any;
   countryName: string;
-  players: Object[];
+  players = []
   tags: string [];
   minAge: number;
   maxAge: number;
   hidePlayersList: boolean = true;
+  listEmpty: boolean = true; 
 
   ngOnInit() {
     this.fetchQuote();
@@ -88,8 +89,6 @@ export class HomePage {
 
   setCountryData(id: number) {
     this.playersProvider.getCountry(id).subscribe(data => {
-      console.log(data);
-      console.log(data.data["country_code"]);
       this.countryCode = data.data["country_code"];
       this.countryName = data.data.name ;
       this.getFlag(data.data["country_code"]);
