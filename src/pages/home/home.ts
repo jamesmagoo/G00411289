@@ -70,7 +70,30 @@ export class HomePage {
     this.socialSharing.share(
       `"${this.quote}" - ${this.author}`,
       'My favorite quote'
-    );
+    ).catch(err => {
+      // Cordova is only available on devices 
+      // Use browser for anyone who doesn't have a device
+      if ('share' in navigator) {
+        navigator.share({
+          title: 'Quote of the Day',
+          text: `"${this.quote}" - ${this.author}`,
+          url: 'https://quotes.com/'
+        })
+        .then(() => console.log('Quote shared successfully'))
+        .catch(error => console.log('Error sharing quote:', error));
+      } else {
+        // If browser can't share, copy to clipboard
+        let nav : any = navigator;
+        console.log(nav)
+        nav.clipboard.writeText(`"${this.quote}" - ${this.author}`).then(() => {
+          alert('Quote copied to clipboard');
+        }, err => {
+          console.error('Could not copy quote: ', err);
+          console.log('Share API is not supported in this browser.');
+          alert('Share API is not supported in this browser.');
+        });
+      }
+    });
   }
 
   checkCountryId() {
